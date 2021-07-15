@@ -10,7 +10,6 @@ import com.quiz.lesson02.model.Store;
 
 @Service
 public class StoreBO {
-	
 	@Autowired
 	private StoreDAO storeDAO;
 	
