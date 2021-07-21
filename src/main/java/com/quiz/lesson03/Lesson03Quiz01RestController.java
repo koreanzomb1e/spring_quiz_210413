@@ -18,20 +18,20 @@ public class Lesson03Quiz01RestController {
 	private RealEstateBO realEstateBO;
 	
 	@RequestMapping("/1")
-	public List<RealEstate> quiz01(@RequestParam(value="id") int id) {
-		return realEstateBO.getRealEsate(id);
+	public RealEstate quiz01_1(@RequestParam(value="id") int id) {	// 필수파라미터는 value= 생략가능
+		return realEstateBO.getRealEsate(id);	// jackson을 라이브러리로 인해 json으로 리턴
 	}
 	
 	@RequestMapping("/2")
-	public List<RealEstate> quiz02(@RequestParam(value="rentPrice") int rentPrice) {
-		return realEstateBO.getRealEsate(rentPrice);
+	public List<RealEstate> quiz01_2(@RequestParam(value="rentPrice") int rentPrice) {
+		return realEstateBO.getRealEsateListByRentPrice(rentPrice);
 	}
 	
 	@RequestMapping("/3")
-	public List<RealEstate> quiz03(
+	public List<RealEstate> quiz01_3(
 			@RequestParam(value="area") int area,
 			@RequestParam(value="price") int price
 	) {
-		return realEstateBO.getRealEsate2(area, price);
+		return realEstateBO.getRealEsateListByAreaAndPrice(area, price);
 	}
 }
