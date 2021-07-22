@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>입력 성공</title>
+<title>공인중개사 추가</title>
 
 <!-- bootstrap CDN link -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -15,7 +15,16 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="display-1">입력 성공!ㅋ</h1>
+		<form method="post" action="/lesson04/quiz02/add_realtor">
+			<b>상호명</b><input type="text" name="office" class="form-control" placeholder="상호명을 입력하세요"><br>
+			<b>전화 번호</b><input type="text" name="phoneNumber" class="form-control" placeholder="전화 번호를 입력하세요"><br>
+			<b>주소</b><input type="text" name="address" class="form-control" placeholder="주소를 입력하세요"><br>
+			<b>등급</b><input type="text" name="grade" class="form-control" placeholder="등급을 입력하세요">
+		
+			<p class="mt-2">
+				<button type="submit" class="btn btn-primary">추가</button>
+			</p>
+		</form>
 	</div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>입력 성공</title>
+<title>공인중개사 정보</title>
 
 <!-- bootstrap CDN link -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -15,7 +15,30 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="display-1">입력 성공!ㅋ</h1>
+		<h1 class="display-4">공인중개사 정보</h1>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>ID</th>
+				<td>${result.id}</td>
+			</tr>
+			<tr>
+				<th>상호명</th>
+				<td>${result.office}</td>
+			</tr>
+			<tr>
+				<th>전화 번호</th>
+				<td>${result.phoneNumber}</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>${result.address}</td>
+			</tr>
+			<tr>
+				<th>등급</th>
+				<td>${result.grade}</td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

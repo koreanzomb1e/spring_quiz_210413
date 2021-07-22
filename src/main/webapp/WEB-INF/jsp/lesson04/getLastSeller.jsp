@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>입력 성공</title>
+<title>판매자 정보</title>
 
 <!-- bootstrap CDN link -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -15,7 +15,13 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="display-1">입력 성공!ㅋ</h1>
+		<h1>판매자 정보</h1>
+		
+		<%-- ${} => EL --%>
+		<img src="${result.profileImageUrl}" alt="사진" width=300><br>
+		<h2>${result.nickname}</h2>
+		<h3 class="text-warning">${result.point}</h3>
+		
 	</div>
 </body>
 </html>
