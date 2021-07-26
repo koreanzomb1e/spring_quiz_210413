@@ -30,8 +30,7 @@ public class Lesson04Quiz02Controller {
 		
 		realtorBO.insertRealtor(realtor);
 		
-		Realtor getRealtor = null;
-		getRealtor = realtorBO.getRealtorById(realtor.getId());
+		Realtor getRealtor = realtorBO.getRealtorById(realtor.getId());
 		model.addAttribute("result", getRealtor);
 		
 		return "lesson04/afterAddRealtor";
