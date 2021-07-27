@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Quiz02</title>
+<title>Quiz03</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -14,62 +15,45 @@
 </head>
 <body>
 	<div class="container">
-		<h1>HOT5</h1>
+		<h1>1. 후보자 득표율</h1>
 		
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th>순위</th>
-					<th>제목</th>
+					<th>기호</th>
+					<th>득표 수</th>
+					<th>득표 율</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="music" items="#{musicRanking}" varStatus="status">
+				<c:forEach var="candidate" items="${candidates}" varStatus="status">
 				<tr>
 					<td>${status.count}</td>
-					<td>${music}</td>
+					<td><fmt:formatNumber value="${candidate}" type="number" /></td>
+					<td><fmt:formatNumber value="${candidate / 1000000}" type="percent" /></td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		
-		<h2>멤버십</h2>
-		
+		<h2>2. 카드 명세서</h2>
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th>이름</th>
-					<th>전화 번호</th>
-					<th>등급</th>
-					<th>포인트</th>
+					<th>사용처</th>
+					<th>가격</th>
+					<th>사용 날짜</th>
+					<th>할부</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="member" items="${membership}">
+				<c:forEach var="cardBill" items="${cardBills}">
+				<fmt:parseDate value="${cardBill.date}" pattern="yyyy-MM-dd" var="date"/>
 				<tr>
-					<td>${member.name}</td>
-					<td>${member.phoneNumber}</td>
-					
-					<c:choose>
-						<c:when test="${member.grade eq'VIP'}">
-							<td class="text-danger">${member.grade}</td>
-						</c:when>
-						<c:when test="${member.grade eq'GOLD'}">
-							<td class="text-warning">${member.grade}</td>
-						</c:when>
-						<c:otherwise>
-							<td>${member.grade}</td>
-						</c:otherwise>
-					</c:choose>
-					
-					<c:choose>
-						<c:when test="${member.point >= 5000}">
-							<td class="text-primary">${member.point}P</td>
-						</c:when>
-						<c:otherwise>
-							<td>${member.point}P</td>
-						</c:otherwise>
-					</c:choose>
+					<td>${cardBill.store}</td>
+					<td><fmt:formatNumber value="${cardBill.pay}" type="currency" /></td>
+					<td><fmt:formatDate value="${date}" pattern="yyyy년 M월 dd일" /></td>
+					<td>${cardBill.installment}</td>
 				</tr>
 				</c:forEach>
 			</tbody>

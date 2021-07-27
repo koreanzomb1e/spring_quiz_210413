@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Quiz02</title>
+<title>Quiz04</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -14,62 +15,53 @@
 </head>
 <body>
 	<div class="container">
-		<h1>HOT5</h1>
+		<h1>회원 정보 리스트</h1>
 		
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th>순위</th>
-					<th>제목</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="music" items="#{musicRanking}" varStatus="status">
-				<tr>
-					<td>${status.count}</td>
-					<td>${music}</td>
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		
-		<h2>멤버십</h2>
-		
-		<table class="table text-center">
-			<thead>
-				<tr>
+					<th>No</th>
 					<th>이름</th>
 					<th>전화 번호</th>
-					<th>등급</th>
-					<th>포인트</th>
+					<th>국적</th>
+					<th>이메일</th>
+					<th>자기소개</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="member" items="${membership}">
+				<c:forEach var="member" items="${members}" varStatus="status">
 				<tr>
+					<td>${status.count}</td>
 					<td>${member.name}</td>
-					<td>${member.phoneNumber}</td>
-					
-					<c:choose>
-						<c:when test="${member.grade eq'VIP'}">
-							<td class="text-danger">${member.grade}</td>
-						</c:when>
-						<c:when test="${member.grade eq'GOLD'}">
-							<td class="text-warning">${member.grade}</td>
-						</c:when>
-						<c:otherwise>
-							<td>${member.grade}</td>
-						</c:otherwise>
-					</c:choose>
-					
-					<c:choose>
-						<c:when test="${member.point >= 5000}">
-							<td class="text-primary">${member.point}P</td>
-						</c:when>
-						<c:otherwise>
-							<td>${member.point}P</td>
-						</c:otherwise>
-					</c:choose>
+					<td>
+						<c:choose>
+							<c:when test="${fn:startsWith(member.phoneNumber, '010')}">
+								${member.phoneNumber}
+							</c:when>
+							<c:otherwise>
+								유효하지 않은 전화번호
+							</c:otherwise>
+						</c:choose>
+					</td>
+					<td>
+						${fn:replace(member.nationality, '삼국시대', '삼국 - ')}
+					</td>
+					<td>
+						<b>${fn:split(member.email, '@')[0]}</b>
+						@
+						${fn:split(member.email, '@')[1]}
+					</td>
+					<td class="text-left">
+						<c:choose>
+							<c:when test="${fn:length(member.introduce) > 15}">
+								${fn:substring(member.introduce, 0, 16)}
+								...
+							</c:when>
+							<c:otherwise>
+								${member.introduce}
+							</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
