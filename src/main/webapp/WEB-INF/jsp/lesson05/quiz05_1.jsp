@@ -20,20 +20,19 @@
 </head>
 <body>
 	<div class="container d-flex">
-		<div class="col-2 mr-3">
+		<nav class="col-2 mr-3">
 			<div>
 				<img src="https://blog.kakaocdn.net/dn/TxmeD/btqCKArBvPm/2tzfJfINwg0WWmCzC4jKW0/img.jpg" alt="기상청" width="150">
 			</div>
-			<nav>
-				<ul>
-					<li><a></a></li>
-					<li><a></a></li>
-					<li><a></a></li>
-					<li><a></a></li>
-				</ul>
-			</nav>
-		</div>
-		<div class="col-10">
+			<ul class="nav flex-column mt-4">
+					<li class="nav-item"><a href="/lesson05/quiz05_1" class="nav-link menu-font">날씨</a></li>
+					<li class="nav-item"><a href="#" class="nav-link menu-font">날씨입력</a></li>
+					<li class="nav-item"><a href="#" class="nav-link menu-font">테마날씨</a></li>
+					<li class="nav-item"><a href="#" class="nav-link menu-font">관측</a></li>
+			</ul>
+		</nav>
+		
+		<section class="col-10">
 			<h2>과거 날씨</h2>
 			
 			<table class="table text-center">
@@ -75,7 +74,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
+		</section>
 	</div>
 </body>
 </html>

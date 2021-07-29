@@ -30,7 +30,6 @@ public class Lesson05Quiz05Controller {
 	
 	@RequestMapping("/lesson05/quiz05_2")
 	public String quiz05_2() {
-		
 		return "lesson05/quiz05_2";
 	}
 	
@@ -45,6 +44,7 @@ public class Lesson05Quiz05Controller {
 	) {
 		weatherhistoryBO.insertWeatherhistory(date, weather, microDust, temperatures, precipitation, windSpeed);
 		
-		return "lesson05/quiz05_1"; 
+		// redirect: 새로운 request를 하는 것과 같으므로 RequestMapping에 있는 path를 써준다.
+		return "redirect:/lesson05/quiz05_1";
 	}
 }
