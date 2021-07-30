@@ -24,12 +24,10 @@ public class Lesson06Quiz01Controller {
 	
 	@RequestMapping("/lesson06/quiz01_2")
 	@ResponseBody
-	public String quiz01_2(
+	public void quiz01_2(
 			@RequestParam("name") String name,
 			@RequestParam("url") String url) {
 		bookmarkBO.insertBookmark(name, url);
-		
-		return "!!";
 	}
 	
 	@RequestMapping("/lesson06/bookmark_list")

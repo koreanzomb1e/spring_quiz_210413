@@ -27,19 +27,31 @@
 	
 	<script>
 		$(document).ready(function() {
-			e.preventDefault();
-			
 			$('#addBtn').on('click', function(e) {
+				e.preventDefault();
+				
+				var name = $('input[name=name]').val();
+				if (name == '') {
+					alert("제목을 입력해주세요.");
+					return;
+				}
+				
+				var url = $('input[name=url]').val();
+				if (url == '') {
+					alert("주소를 입력해주세요.");
+					return;
+				} else if (url.indexOf("http") == -1) {
+					alert("http 또는 https 프로토콜까지 입력해주세요.");
+					return;
+				}
+				
 				$.ajax({
 					type: "POST"
 					, url: "/lesson06/quiz01_2"
 					, data: {"name":name, "url":url}
-					, success: function(data) {
-						alert(data);
+					, success: function() {
+						alert("추가 완료");
 						location.href = "/lesson06/bookmark_list"
-					}
-					, complete: function(data) {
-						alert("완료");
 					}
 				});
 			});
