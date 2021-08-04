@@ -61,4 +61,13 @@ public class Lesson06QuizController {
 		checked.put("is_check", isCheck);
 		return checked;
 	}
+	
+	@RequestMapping("/lesson06/is_delete")
+	public String isDelete(
+			@RequestParam("id") int id) {
+		
+		bookmarkBO.deleteBookmarkById(id);
+		
+		return "redirect:/lesson06/bookmark_list";
+	}
 }

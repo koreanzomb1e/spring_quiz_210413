@@ -16,4 +16,6 @@ public interface BookmarkDAO {
 	public List<Bookmark> selectBookmark();
 	
 	public boolean existBookmarkByUrl(String url);
+	
+	public void deleteBookmarkById(int id);
 }

@@ -52,10 +52,10 @@
 					, dataType: 'json'	// response body	- AJAX 통신 후 response로는 String 또는 JSON이 리턴되어야 한다.
 					, success: function(data) {
 						alert(data.result);
-						location.href = "/lesson06/bookmark_list"
+						location.href = "/lesson06/bookmark_list";
 					}
 					, error: function(e) {
-						alert("error" + e)
+						alert("error" + e);
 					}
 				});
 			});
@@ -67,7 +67,7 @@
 				let url = $('#url').val();
 
 				$.ajax({
-					type: 'get'
+					type: 'post'
 					, data: {'url': url}
 					, url: '/lesson06/is_check'
 					, success: function(data) {

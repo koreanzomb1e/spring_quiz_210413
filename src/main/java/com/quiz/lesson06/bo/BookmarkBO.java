@@ -24,4 +24,8 @@ public class BookmarkBO {
 	public boolean existBookmarkByUrl(String url) {
 		return bookmarkDAO.existBookmarkByUrl(url);
 	}
+	
+	public void deleteBookmarkById(int id) {
+		bookmarkDAO.deleteBookmarkById(id);
+	}
 }
