@@ -14,4 +14,6 @@ public interface BookmarkDAO {
 			@Param("url") String url);
 	
 	public List<Bookmark> selectBookmark();
+	
+	public boolean existBookmarkByUrl(String url);
 }

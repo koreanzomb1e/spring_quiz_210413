@@ -1,6 +1,8 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,7 @@ import com.quiz.lesson06.bo.BookmarkBO;
 import com.quiz.lesson06.model.Bookmark;
 
 @Controller
-public class Lesson06Quiz01Controller {
+public class Lesson06QuizController {
 	@Autowired
 	private BookmarkBO bookmarkBO;
 	
@@ -22,12 +24,22 @@ public class Lesson06Quiz01Controller {
 		return "lesson06/quiz01_1";
 	}
 	
+	// AJAX 요청이 왔을 때,
+	// 서버 쪽에서 @Responsebody 어노테이션을 사용해야 한다.
+	// 리턴되는 값이 반드시 있어야 한다.
 	@RequestMapping("/lesson06/quiz01_2")
 	@ResponseBody
-	public void quiz01_2(
+	public Map<String, String> quiz01_2(
 			@RequestParam("name") String name,
 			@RequestParam("url") String url) {
 		bookmarkBO.insertBookmark(name, url);
+		
+		// 성공했는지 여부 리턴
+		// {"result":"success"}
+		Map<String, String> resultMap = new HashMap<>();
+		resultMap.put("result", "success");
+		
+		return resultMap;	// jackson 라이브러리 때문에 json 리턴
 	}
 	
 	@RequestMapping("/lesson06/bookmark_list")
@@ -36,5 +48,17 @@ public class Lesson06Quiz01Controller {
 		model.addAttribute("bookmarks", bookmarks);
 		
 		return "lesson06/quiz01_2";
+	}
+	
+	@RequestMapping("/lesson06/is_check")
+	@ResponseBody
+	public Map<String, Boolean> isCheck(
+			@RequestParam("url") String url) {
+		
+		boolean isCheck = bookmarkBO.existBookmarkByUrl(url);
+		
+		Map<String, Boolean> checked = new HashMap<>();
+		checked.put("is_check", isCheck);
+		return checked;
 	}
 }

@@ -20,4 +20,8 @@ public class BookmarkBO {
 	public List<Bookmark> getBookmark() {
 		return bookmarkDAO.selectBookmark();
 	}
+	
+	public boolean existBookmarkByUrl(String url) {
+		return bookmarkDAO.existBookmarkByUrl(url);
+	}
 }

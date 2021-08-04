@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.quiz.lesson06.dao.BookmarkDAO">
- 	<insert id="insertBookmark" parameterType="com.quiz.lesson06.model.Bookmark">
+ 	<insert id="insertBookmark" parameterType="map">
  		INSERT INTO `bookmark`
  		(
  			`name`
@@ -23,6 +23,15 @@
 	 		, `url`
 	 	FROM
 	 		`bookmark`
+ 	</select>
+ 	
+ 	<select id="existBookmarkByUrl" resultType="boolean">
+ 		SELECT
+ 			count(1)
+ 		FROM
+ 			`bookmark`
+ 		WHERE
+ 			`url` = #{url}
  	</select>
  
  </mapper>
