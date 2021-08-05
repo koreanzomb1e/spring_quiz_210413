@@ -70,4 +70,16 @@ public class Lesson06QuizController {
 		
 		return "redirect:/lesson06/bookmark_list";
 	}
+	
+	@RequestMapping("/lesson06/is_delete2")
+	@ResponseBody
+	public Map<String, String> isDelete2(
+			@RequestParam("bookmark_id") int id) {
+		
+		bookmarkBO.deleteBookmarkById(id);
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("success", "삭제 완료");
+		return map;
+	}
 }

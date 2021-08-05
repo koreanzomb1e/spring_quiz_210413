@@ -28,16 +28,48 @@
 				<c:forEach var="bookmark" items="${bookmarks}" varStatus="status">
 				<tr>
 					<td>${status.count}</td>
-					<td id="name">${bookmark.name}</td>
+					<td>${bookmark.name}</td>
 					<td>${bookmark.url}</td>
 					<td>
-						<!-- http://localhost/lesson03/quiz04/1?id=21 -->
 						<a href="/lesson06/is_delete?id=${bookmark.id}" class="btn btn-danger">삭제</a>
+						<!-- 방법1 name, value 사용 -->
+						<%-- <button type="button" name="delBtn" class="btn btn-danger" value="${bookmark.id}">삭제</button> --%>
+						
+						<!-- 방법2 data를 이용해서 태그에 임시 저장 -->
+						<button type="button" class="bookmark-btn btn btn-danger" data-bookmark-id="${bookmark.id}">삭제</button>
 					</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	
+	<script>
+		$(document).ready(function() {
+			// 방법1
+			/* $('td').on('click', 'button[name=delBtn]', function() {
+				let id = $(this).attr('value');
+			}); */
+			
+			// 방법2
+			// 태그: data-변수명	data- 그 뒤엔 변수명을 정한다
+			$('.bookmark-btn').on('click', function() {
+				let bookmarkId = $(this).data('bookmark-id');
+				
+				$.ajax({
+					type: 'post'
+					, data: {'bookmark_id': bookmarkId}
+					, url: '/lesson06/is_delete2'
+					, success: function(data) {
+						alert(data.success);
+						location.reload();	// 새로고침
+					}
+					, error: function(e) {
+						alert("error:" + e)
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
